@@ -1,4 +1,12 @@
 21/04/19 17:15
 
 	- Check what's new on Angular 7 and look for some installation tutorials
+	- Install NodeJs
+	- Update npm
+	- Install Sublime text
+	- Create new Github Account
+	- Install Angular 7 and generate "AgileWebShop" project
+	- Install git
+	- Install Tortoise git
+	- Hookup Tortoise git with Github and push the project
 	- 
