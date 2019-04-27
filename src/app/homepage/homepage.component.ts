@@ -1,6 +1,6 @@
 import { Component, OnInit , AfterViewInit } from '@angular/core';
-import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -10,7 +10,7 @@ import { ApiService } from '../api.service';
 export class HomepageComponent implements OnInit, AfterViewInit {
   /* Variables */
   private storeId:number = 1;
-  private homeCategories;
+  private homeCategories = [];
   private products;
   /* Constructor */
   constructor(public apiService:ApiService) {
@@ -39,7 +39,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   }
   public getHomeCategories = async () => {
   	this.apiService.requestHomeCategories(this.storeId).subscribe((data: {}) => {
-  			this.homeCategories = data.categories;
+  			this.homeCategories = data[Object.keys(data)[0]]; // avoid stupid object, convert into usefull array
   			console.log(this.homeCategories);
   	});
   }

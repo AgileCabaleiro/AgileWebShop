@@ -22,13 +22,13 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div *ngFor="let cat of homeCategories" class="col-lg-12">
-					<div class="hot_deal_box">
+					<div class="hot_deal_box" >
 						<img class="img-fluid img-categories" src="{{cat.imageUrl}}" alt="">
 						<div class="content">
 							<h2>{{cat.label}}</h2>
 							<!-- <p>shop now</p> -->
 						</div>
-						<!-- <a class="hot_deal_link" href="#"></a> -->
+						<a class="hot_deal_link" routerLink="/category/{{cat.categoryId}}" routerLinkActive="active"></a>
 					</div>
 				</div>
 

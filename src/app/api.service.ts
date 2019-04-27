@@ -19,5 +19,7 @@ export class ApiService{
 	requestHomeCategories(storeId:number){
 		return this.http.get('https://private-anon-d77ff3624d-gocco.apiary-mock.com/stores/' + storeId + '/home');
 	}
-	
+	requestProducts(storeId:number, categoryId){
+		return this.http.get('http://private-anon-d77ff3624d-gocco.apiary-mock.com/stores/' + storeId + '/products/search?filters=&with_text=&category_id=' + categoryId + '&order=&dir=&page=&limit=');
+	}
 }

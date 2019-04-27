@@ -1,0 +1,18 @@
+.banner_image{
+position: absolute;
+    width: 100%;
+    height: auto;	
+}
+.showList{
+	display: block !important;
+}
+
+
+.divImageColorFilter{
+	display: inline;
+	> img {
+		margin-right: 5px;
+		border: 1px solid #cccccc;
+		cursor: pointer;
+	}
+}
