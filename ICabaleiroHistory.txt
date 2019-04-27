@@ -17,3 +17,20 @@
 	- I write a message to the team in slack, introducing myself and commenting on my first day
 	
 21/04/19 21:30
+ - SICK
+27/04/19 9:30
+	- Import header, navbar, homepage & footer from template to Angular project
+	- Import js for bootstrap & basics
+	- Import css from template
+	- Install Font-awesome module
+ 	- AFK 30 min(coffee)
+	- Setup Bootstrap in Angular way
+	- Setup Font-awesome in Angular way (painfull)
+	- Lunch (2 hours)
+	- Create service to connect with API
+	- Setup firsts queries
+	- Do some work on homepage, linking with API data
+	- Create component for Categories and make some queries to link it with API
+	- I worked on Categories component, linking data.
+	- I wrote to the team in slack, asking my doubts or things that I think are wrong.
+	
