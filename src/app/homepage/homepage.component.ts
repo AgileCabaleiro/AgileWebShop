@@ -9,29 +9,39 @@ import { ApiService } from '../api.service';
 })
 export class HomepageComponent implements OnInit, AfterViewInit {
   /* Variables */
+  private storeId:number = 1;
+  private homeCategories;
   private products;
-
+  /* Constructor */
   constructor(public apiService:ApiService) {
-  	// this.products = this.apiService.getAllProducts();
-  	// console.log(this.products);
-  }
 
+  }
+  /* Live */
   ngOnInit() {
-  	this.requestStores();
+  	// this.getCountries();
+  	this.getStores();
+  	this.getHomeCategories();
+  }
+
+  ngAfterViewInit(){
 
   }
 
-  // ngAfterViewInit(){
-  // 	this.products = this.requestProducts();
-  // 	console.log(this.products);
-  // }
-
-  public requestStores = async () => {
-  	this.apiService.getAllStores().subscribe((data: {}) => {
-  			console.log(data);	
+  public getStores = async () => {
+  	this.apiService.requestAllStores().subscribe((data: {}) => {
+  			console.log(data);
   	});
-  	
-  	
+  }
+  public getCountries = async () => {
+  	this.apiService.requestAllCountries(this.storeId).subscribe((data: {}) => {
+  			console.log(data);
+  	});
+  }
+  public getHomeCategories = async () => {
+  	this.apiService.requestHomeCategories(this.storeId).subscribe((data: {}) => {
+  			this.homeCategories = data.categories;
+  			console.log(this.homeCategories);
+  	});
   }
 
 }
