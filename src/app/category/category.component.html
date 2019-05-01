@@ -18,15 +18,13 @@
 				<div class="col-lg-9">
 					<div class="product_top_bar">
 						<div class="left_dorp">
-							<select class="sorting">
-								<option value="1">Default sorting</option>
-								<option value="2">Default sorting 01</option>
-								<option value="4">Default sorting 02</option>
+							<select class="sorting" [ngModel]="selectedSortByObj" (ngModelChange)="onChangeSortingSelect($event)">
+								<option *ngFor="let opt of sortBy" [ngValue]="opt">{{opt.name}}</option>
 							</select>
-							<select class="show">
-								<option value="1">Show 12</option>
-								<option value="2">Show 14</option>
-								<option value="4">Show 16</option>
+							<select class="show" [ngModel]="this.urlFilters.limit" onchange="onChangeShowPerPage($event)">
+								<option value="12">Show 12</option>
+								<option value="24">Show 24</option>
+								<option value="36">Show 36</option>
 							</select>
 						</div>
 						<div class="right_page ml-auto">
@@ -61,161 +59,33 @@
 							</nav>
 						</div>
 					</div>
+					<!--================ Product Area =================-->
 					<div class="latest_product_inner row">
 						<div *ngFor="let item of products" class="col-lg-3 col-md-3 col-sm-6">
 							<div class="f_p_item">
 								<div class="f_p_img">
-									<img class="img-fluid" src="{{item.images[2]}}" alt="">
+									<a routerLink="/product/{{item.modelId}}" routerLinkActive="active">
+										<img class="img-fluid" src="{{item.images[2]}}" onError="this.src='./assets/img/product/feature-product/f-p-2.jpg';" alt="">
+									</a>
 									<div class="p_icon">
 										<a href="#">
-											<i class="lnr lnr-heart"></i>
+											<i class="fa fa-heart fa-lg"></i>
 										</a>
 										<a href="#">
-											<i class="lnr lnr-cart"></i>
+											<i class="fa fa-shopping-cart fa-lg"></i>
 										</a>
 									</div>
 								</div>
-								<a href="#">
+								<a routerLink="/product/{{item.modelId}}" routerLinkActive="active">
 									<h4>{{item.name}}</h4>
 								</a>
-								<h5>{{item.finalPrice}} {{item.currency}}</h5>
+								<h5>{{item.finalPrice/100}} {{item.currency}}</h5>
 							</div>
 						</div>
-						<!-- <div class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="img/product/feature-product/f-p-2.jpg" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="lnr lnr-heart"></i>
-										</a>
-										<a href="#">
-											<i class="lnr lnr-cart"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>Long Sleeve TShirt</h4>
-								</a>
-								<h5>$150.00</h5>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="img/product/feature-product/f-p-3.jpg" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="lnr lnr-heart"></i>
-										</a>
-										<a href="#">
-											<i class="lnr lnr-cart"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>Long Sleeve TShirt</h4>
-								</a>
-								<h5>$150.00</h5>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="img/product/feature-product/f-p-4.jpg" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="lnr lnr-heart"></i>
-										</a>
-										<a href="#">
-											<i class="lnr lnr-cart"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>Long Sleeve TShirt</h4>
-								</a>
-								<h5>$150.00</h5>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="img/product/feature-product/f-p-5.jpg" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="lnr lnr-heart"></i>
-										</a>
-										<a href="#">
-											<i class="lnr lnr-cart"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>Long Sleeve TShirt</h4>
-								</a>
-								<h5>$150.00</h5>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="img/product/feature-product/f-p-4.jpg" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="lnr lnr-heart"></i>
-										</a>
-										<a href="#">
-											<i class="lnr lnr-cart"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>Long Sleeve TShirt</h4>
-								</a>
-								<h5>$150.00</h5>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="img/product/feature-product/f-p-3.jpg" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="lnr lnr-heart"></i>
-										</a>
-										<a href="#">
-											<i class="lnr lnr-cart"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>Long Sleeve TShirt</h4>
-								</a>
-								<h5>$150.00</h5>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="img/product/feature-product/f-p-4.jpg" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="lnr lnr-heart"></i>
-										</a>
-										<a href="#">
-											<i class="lnr lnr-cart"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>Long Sleeve TShirt</h4>
-								</a>
-								<h5>$150.00</h5>
-							</div>
-						</div> -->
 					</div>
 				</div>
+				<!--================ END Product Area =================-->
+				<!--================ Categories Area =================-->
 				<div class="col-lg-3">
 					<div class="left_sidebar_area">
 						<aside class="left_widgets cat_widgets">
@@ -225,76 +95,13 @@
 							<div class="widgets_inner">
 								<ul class="list">
 									<li *ngFor="let cat of homeCategories">
-										<a routerLink="/category/{{cat.categoryId}}" routerLinkActive="active">{{cat.label}}</a>
+										<a routerLink="/category/{{cat.categoryId}}" routerLinkActive="active" [ngClass]="{'CategoryActive': cat.categoryId == categoryId}">{{cat.label}}</a>
 										<ul [ngClass]="{'list':true, 'showList': categoryId == cat.categoryId}">
 											<li *ngFor="let subcat of cat.children">
-												<a routerLink="/category/{{cat.categoryId}}/subcategory/{{subcat.categoryId}}" routerLinkActive="active">{{subcat.label}}</a>
+												<a routerLink="/category/{{cat.categoryId}}/subcategory/{{subcat.categoryId}}" routerLinkActive="active" [ngClass]="{'CategoryActive': subcat.categoryId == subCategoryId}">{{subcat.label}}</a>
 											</li>
 										</ul>
 									</li>
-									<!-- <li>
-										<a href="#">Meat and Fish</a>
-										<ul class="list">
-											<li>
-												<a href="#">Frozen Fish</a>
-											</li>
-											<li>
-												<a href="#">Dried Fish</a>
-											</li>
-											<li>
-												<a href="#">Fresh Fish</a>
-											</li>
-											<li>
-												<a href="#">Meat Alternatives</a>
-											</li>
-											<li>
-												<a href="#">Meat</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a href="#">Cooking</a>
-										<ul class="list">
-											<li>
-												<a href="#">Frozen Fish</a>
-											</li>
-											<li>
-												<a href="#">Dried Fish</a>
-											</li>
-											<li>
-												<a href="#">Fresh Fish</a>
-											</li>
-											<li>
-												<a href="#">Meat Alternatives</a>
-											</li>
-											<li>
-												<a href="#">Meat</a>
-											</li> 
-										</ul>
-									</li>
-									<li>
-										<a href="#">Beverages</a>
-										<ul class="list">
-											<li>
-												<a href="#">Frozen Fish</a>
-											</li>
-											<li>
-												<a href="#">Dried Fish</a>
-											</li>
-											<li>
-												<a href="#">Fresh Fish</a>
-											</li>
-											<li>
-												<a href="#">Meat Alternatives</a>
-											</li>
-											<li>
-												<a href="#">Meat</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a href="#">Home and Cleaning</a>
-									</li> -->
 								</ul>
 							</div>
 						</aside>
@@ -308,18 +115,6 @@
 									<li *ngFor="let opt of filter.options">
 										<a href="#">{{opt.label}}</a>
 									</li>
-									<!-- <li>
-										<a href="#">Asus</a>
-									</li>
-									<li class="active">
-										<a href="#">Gionee</a>
-									</li>
-									<li>
-										<a href="#">Micromax</a>
-									</li>
-									<li>
-										<a href="#">Samsung</a>
-									</li> -->
 								</ul>
 
 								<div  *ngIf="filter.label == 'COLOR'">

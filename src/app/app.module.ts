@@ -4,6 +4,7 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -12,13 +13,19 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoryComponent } from './category/category.component';
 import { Ng5SliderModule } from 'ng5-slider';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProductViewComponent } from './product-view/product-view.component';
 
 
 const appRoutes: Routes = [
   { path: 'category/:categoryId', component: CategoryComponent},
-  { path: 'category/:categoryId/subcategory/:subCategoryId', component: CategoryComponent},
   { path: '', component: HomepageComponent},
-  { path: 'home', component: HomepageComponent}
+  { path: 'home', component: HomepageComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'product/:modelId', component: ProductViewComponent}
   // { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -29,13 +36,18 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
-    CategoryComponent
+    CategoryComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,
     Angular2FontawesomeModule,
     HttpClientModule,
     Ng5SliderModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes,
       { enableTracing: false } // <-- debugging purposes only)
     )

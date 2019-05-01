@@ -30,7 +30,18 @@
 	- Create service to connect with API
 	- Setup firsts queries
 	- Do some work on homepage, linking with API data
+	- AFK 30 min(coffee)
 	- Create component for Categories and make some queries to link it with API
 	- I worked on Categories component, linking data.
 	- I wrote to the team in slack, asking my doubts or things that I think are wrong.
+27/04/19 22:45
+
+01/05/19 11:00
+	- Setup alternative local image for broken url images.
+	- Fix navigation on categories component left sidemenu.
+	- Setup for sortBy, pagination(not complete), page items ...
+	- Lunch (2 hours)
+	- Generate and add template & route for login, register, productView
 	
+
+
