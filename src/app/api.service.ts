@@ -29,4 +29,9 @@ export class ApiService{
 		console.log(url);
 		return this.http.get(url);
 	}
+	requestProductByModelId(storeId:number, modelId){
+		const url = 'https://private-anon-a95bd54e9f-gocco.apiary-mock.com/stores/' + storeId + '/products?scan_code=' + modelId;
+		console.log(url);
+		return this.http.get(url);
+	}
 }

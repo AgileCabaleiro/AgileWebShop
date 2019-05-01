@@ -16,7 +16,7 @@
 <!--================End Home Banner Area =================-->
 
 <!--================Single Product Area =================-->
-<div class="product_image_area">
+<div *ngIf="productInfo != undefined" class="product_image_area">
   <div class="container">
     <div class="row s_product_inner">
       <div class="col-lg-6">
@@ -49,23 +49,30 @@
       </div>
       <div class="col-lg-5 offset-lg-1">
         <div class="s_product_text">
-          <h3>Faded SkyBlu Denim Jeans</h3>
-          <h2>$149.99</h2>
+          <h3>{{productInfo.name}}</h3>
+          <h2>{{productInfo.originalPrice/100}} {{productInfo.currency}}</h2>
           <ul class="list">
-            <li>
+            <!-- <li>
               <a class="active" href="#">
                 <span>Category</span> : Household</a>
-            </li>
+            </li> -->
             <li>
-              <a href="#">
-                <span>Availibility</span> : In Stock</a>
+              <span>Sizes</span> :
+              <select class="" [ngModel]="selectedSize" (ngModelChange)="onChangeSelectedSize($event)">
+                <option *ngFor="let size of productInfo.sizes" [ngValue]="size.variantId">{{size.name}}</option>
+              </select>
+            </li>
+            <li *ngIf="productInfo.sizes != undefined" >
+              <span>Availibility</span> : {{productInfo.sizes[selectedSizeIndex].stockQty}}
             </li>
           </ul>
-          <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for something that
-            can make your interior look awesome, and at the same time give you the pleasant warm feeling during the winter.</p>
+          <p>{{productInfo.description}}</p>
           <div class="product_count">
             <label for="qty">Quantity:</label>
-            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+            <select *ngIf="selectedQuantity > 0" name="qty" [ngModel]="selectedQuantity">
+                <option *ngFor="let qty of quantitiesArray; index as i" [ngValue]="i + 1">{{i + 1}}</option>
+            </select>
+            <!-- <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
              class="increase items-count" type="button">
               <i class="lnr lnr-chevron-up"></i>
@@ -73,16 +80,16 @@
             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
              class="reduced items-count" type="button">
               <i class="lnr lnr-chevron-down"></i>
-            </button>
+            </button> -->
           </div>
           <div class="card_area">
             <a class="main_btn" href="#">Add to Cart</a>
             <a class="icon_btn" href="#">
-              <i class="lnr lnr lnr-diamond"></i>
+              <i class="fa fa-hearth fa-lg"></i>
             </a>
-            <a class="icon_btn" href="#">
+            <!-- <a class="icon_btn" href="#">
               <i class="lnr lnr lnr-heart"></i>
-            </a>
+            </a> -->
           </div>
         </div>
       </div>
@@ -92,23 +99,24 @@
 <!--================End Single Product Area =================-->
 
 <!--================Product Description Area =================-->
-<section class="product_description_area">
+<section *ngIf="productInfo != undefined" class="product_description_area">
   <div class="container">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specification</a>
-      </li>
-      <li class="nav-item">
+      </li> -->
+      <!-- <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Specification</a>
+      </li> -->
+      <h2>Specification</h2>
+      <!-- <li class="nav-item">
         <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Comments</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
-      </li>
+      </li> -->
     </ul>
-    <div class="tab-content" id="myTabContent">
+    <!-- <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
         <p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes and sizes
           enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in Reading at the
@@ -124,80 +132,56 @@
           spouses or grown children leaving for college are all reasons that someone accustomed to cooking for more than one
           would suddenly need to learn how to adjust all the cooking practices utilized before into a streamlined plan of cooking
           that is more efficient for one person creating less</p>
-      </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      </div> -->
+      <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
         <div class="table-responsive">
           <table class="table">
             <tbody>
               <tr>
                 <td>
-                  <h5>Width</h5>
+                  <h5>Color</h5>
                 </td>
                 <td>
-                  <h5>128mm</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Height</h5>
-                </td>
-                <td>
-                  <h5>508mm</h5>
+                  <h5>{{productInfo.color}}</h5>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <h5>Depth</h5>
+                  <h5>Composition</h5>
                 </td>
                 <td>
-                  <h5>85mm</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Weight</h5>
-                </td>
-                <td>
-                  <h5>52gm</h5>
+                  <h5>{{productInfo.composition}}</h5>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <h5>Quality checking</h5>
+                  <h5>Type</h5>
                 </td>
                 <td>
-                  <h5>yes</h5>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h5>Freshness Duration</h5>
-                </td>
-                <td>
-                  <h5>03days</h5>
+                  <h5>{{productInfo.type}}</h5>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <h5>When packeting</h5>
+                  <h5>SKU</h5>
                 </td>
                 <td>
-                  <h5>Without touch of hand</h5>
+                  <h5>{{productInfo.sku}}</h5>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <h5>Each Box contains</h5>
+                  <h5>Care</h5>
                 </td>
                 <td>
-                  <h5>60pcs</h5>
+                  <img src="{{productInfo.care}}" alt="">
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
         <div class="row">
           <div class="col-lg-6">
             <div class="comment_list">
@@ -447,11 +431,11 @@
                   <button type="submit" value="submit" class="btn submit_btn">Submit Now</button>
                 </div>
               </form>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 <!--================End Product Description Area =================-->
