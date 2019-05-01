@@ -42,8 +42,12 @@
 	- Setup for sortBy, pagination(not complete), page items ...
 	- Lunch (2 hours)
 	- Generate and add template & route for login, register, productView
-	- Homepage featured products
-	- Links & routes for productView
-	- 
+	- Homepage featured products.
+	- AFK 15 min(coffee)
+	- For productView: 
+		- Links and routes
+		- Show data
+		- Check sizes && avalability
+01/05/19 19:30
 
 
