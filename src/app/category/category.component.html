@@ -94,7 +94,7 @@
 							</div>
 							<div class="widgets_inner">
 								<ul class="list">
-									<li *ngFor="let cat of homeCategories">
+									<li *ngFor="let cat of global.homeCategories">
 										<a routerLink="/category/{{cat.categoryId}}" routerLinkActive="active" [ngClass]="{'CategoryActive': cat.categoryId == categoryId}">{{cat.label}}</a>
 										<ul [ngClass]="{'list':true, 'showList': categoryId == cat.categoryId}">
 											<li *ngFor="let subcat of cat.children">

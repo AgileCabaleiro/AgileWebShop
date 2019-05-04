@@ -3,6 +3,8 @@ import { ActivatedRoute, ActivationEnd } from "@angular/router";
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { Options } from 'ng5-slider';
+import { Globals } from '../globals';
+
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -35,7 +37,7 @@ export class CategoryComponent implements OnInit {
     ceil: 1200
   };
   /* Constructor */
-  constructor(private route: ActivatedRoute, public apiService:ApiService, public router: Router) { 
+  constructor(private route: ActivatedRoute, public apiService:ApiService, public router: Router, public global:Globals) { 
   	// this.categoryId = this.route.snapshot.paramMap.get("categoryId");
   	// if ( this.route.snapshot.paramMap.get("subCategoryId") != undefined ){
   	// 	this.subCategoryId = this.route.snapshot.paramMap.get("subCategoryId");
@@ -50,6 +52,7 @@ export class CategoryComponent implements OnInit {
           this.urlFilters.categoryId = this.categoryId;
         }
         this.getProductsbyCategory();
+        this.changeActualCategory();
       }
     });
   }
@@ -66,6 +69,14 @@ export class CategoryComponent implements OnInit {
     this.getProductsbyCategory();
   }
   /* Functions */
+  private changeActualCategory(){
+    this.homeCategories.forEach((element) => {
+      if(element.categoryId == this.categoryId){
+        this.actualCategory = element;
+        this.bannerImage = element['imageUrl'];	
+      }
+    });
+  }
   public getProductsbyCategory = async () => {
   	this.apiService.requestProducts(this.storeId, this.urlFilters ).subscribe((data: {}) => {
         console.log('Getting products for category: ' + this.urlFilters.categoryId)
@@ -79,13 +90,7 @@ export class CategoryComponent implements OnInit {
   public getHomeCategories = async () => {
   	this.apiService.requestHomeCategories(this.storeId).subscribe((data: {}) => {
   			this.homeCategories = data[Object.keys(data)[0]]; // avoid stupid object, convert it into usefull array
-  			this.homeCategories.forEach((element) => {
-  				if(element.categoryId == this.categoryId){
-  					this.actualCategory = element;
-  					this.bannerImage = element['imageUrl'];	
-  					console.log(this.actualCategory);
-  				}
-  			})
+        this.changeActualCategory();
   	});
   }
   public getSortBy = async () => {

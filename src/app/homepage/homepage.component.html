@@ -15,33 +15,74 @@
 			</div>
 		</div>
 	</section> -->
+	<section class="sectionCarousel">
+			<ngb-carousel *ngIf="images">
+					<ng-template ngbSlide *ngFor="let image of images">
+					  <img [src]="image" class="imageCarousel" alt="Random first slide">
+					  <div class="carousel-caption">
+						<h3>First slide label</h3>
+						<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+					  </div>
+					</ng-template>
+				  </ngb-carousel>
+	</section>
 	<!--================End Home Banner Area =================-->
-
+	<!--================Feature Product Area =================-->
+	<section class="feature_product_area section_gap">
+			<div class="main_box">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="main_title">
+							<h2>Featured Products</h2>
+							<p>Who are in extremely love with eco friendly system.</p>
+						</div>
+					</div>
+					<div class="row">
+					<!--================ Product Area =================-->
+					<div class="latest_product_inner row">
+							<div *ngFor="let item of products" class="col" routerLink="/product/{{item.modelId}}" routerLinkActive="active">
+								<div class="f_p_item">
+									<div class="f_p_img">
+										<img class="img-fluid" src="{{item.images[2]}}" onError="this.src='./assets/img/product/feature-product/f-p-2.jpg';" alt="">
+										<div class="p_icon">
+											<a href="#">
+												<i class="fa fa-heart fa-lg"></i>
+											</a>
+											<a href="#">
+												<i class="fa fa-shopping-cart fa-lg"></i>
+											</a>
+										</div>
+									</div>
+									<a href="#">
+										<h4>{{item.name}}</h4>
+									</a>
+									<h5>{{item.finalPrice/100}} {{item.currency}}</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--================End Feature Product Area =================-->
 	<!--================Hot Deals Area =================-->
 	<section class="hot_deals_area section_gap">
 		<div class="container-fluid">
 			<div class="row">
-				<div *ngFor="let cat of homeCategories" class="col-lg-12">
-					<div class="hot_deal_box" >
-						<img class="img-fluid img-categories" src="{{cat.imageUrl}}" alt="">
-						<div class="content">
-							<h2>{{cat.label}}</h2>
-							<!-- <p>shop now</p> -->
+					<div class="main_title">
+							<h2>Our categories</h2>
+							<p>Who are in extremely love with eco friendly system.</p>
 						</div>
-						<a class="hot_deal_link" routerLink="/category/{{cat.categoryId}}" routerLinkActive="active"></a>
+				<div *ngFor="let cat of global.homeCategories; index as i" class="col-lg-12 mainDivCategory" routerLink="/category/{{cat.categoryId}}" routerLinkActive="active">
+					<div class="col-lg-6 no-padding displayInline">
+							<div class="" >
+								<img class="img-fluid img-categories" src="{{cat.imageUrl}}" alt="">
+							</div>
+					</div>
+					<div class="col-lg-6 displayInline no-padding">
+						<h2 align="center">{{cat.label}}</h2>
 					</div>
 				</div>
-
-<!-- 				<div class="col-lg-6">
-					<div class="hot_deal_box">
-						<img class="img-fluid" src="assets/img/product/hot_deals/deal1.jpg" alt="">
-						<div class="content">
-							<h2>Hot Deals of this Month</h2>
-							<p>shop now</p>
-						</div>
-						<a class="hot_deal_link" href="#"></a>
-					</div>
-				</div> -->
 			</div>
 		</div>
 	</section>
@@ -71,64 +112,7 @@
 	</section> -->
 	<!--================End Clients Logo Area =================-->
 
-	<!--================Feature Product Area =================-->
-	<section class="feature_product_area section_gap">
-		<div class="main_box">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="main_title">
-						<h2>Featured Products</h2>
-						<p>Who are in extremely love with eco friendly system.</p>
-					</div>
-				</div>
-				<div class="row">
-				<!--================ Product Area =================-->
-				<div class="latest_product_inner row">
-						<div *ngFor="let item of products" class="col-lg-3 col-md-3 col-sm-6">
-							<div class="f_p_item">
-								<div class="f_p_img">
-									<img class="img-fluid" src="{{item.images[2]}}" onError="this.src='./assets/img/product/feature-product/f-p-2.jpg';" alt="">
-									<div class="p_icon">
-										<a href="#">
-											<i class="fa fa-heart fa-lg"></i>
-										</a>
-										<a href="#">
-											<i class="fa fa-shopping-cart fa-lg"></i>
-										</a>
-									</div>
-								</div>
-								<a href="#">
-									<h4>{{item.name}}</h4>
-								</a>
-								<h5>{{item.finalPrice/100}} {{item.currency}}</h5>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--================ END Product Area =================-->
-					<!-- <div class="col col1">
-						<div class="f_p_item">
-							<div class="f_p_img">
-								<img class="img-fluid" src="assets/img/product/feature-product/f-p-1.jpg" alt="">
-								<div class="p_icon">
-									<a href="#">
-										<i class="fa fa-heart fa-lg"></i>
-									</a>
-									<a href="#">
-										<i class="fa fa-shopping-cart fa-lg"></i>
-									</a>
-								</div>
-							</div>
-							<a href="#">
-								<h4>Long Sleeve TShirt</h4>
-							</a>
-							<h5>$150.00</h5>
-						</div>
-					</div> -->
-			</div>
-		</div>
-	</section>
-	<!--================End Feature Product Area =================-->
+
 
 	<!--================ Subscription Area ================-->
 <!-- 	<section class="subscription-area section_gap">

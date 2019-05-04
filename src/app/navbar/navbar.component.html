@@ -30,8 +30,8 @@
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html">
-						<img src="assets/img/logo.png" alt="">
+					<a class="navbar-brand logo_h" routerLink="/home" routerLinkActive="active">
+						<img src="https://is4-ssl.mzstatic.com/image/thumb/Purple113/v4/e8/8b/00/e88b00b7-4285-f430-1d96-4a4c45ad5942/source/512x512bb.jpg" alt="" class="logoNavbar">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 					 aria-expanded="false" aria-label="Toggle navigation">
@@ -45,12 +45,15 @@
 							<div class="col-lg-7 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
 									<li class="nav-item active">
-										<a class="nav-link" href="index.html">Home</a>
+										<a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
 									</li>
 									<li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+										<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
 										<ul class="dropdown-menu">
-											<li class="nav-item">
+											<li *ngFor="let cat of global.homeCategories" class="nav-item">
+												<a routerLink="/category/{{cat.categoryId}}" routerLinkActive="active" class="nav-link">{{cat.label}}</a>
+											</li>
+											<!-- <li class="nav-item">
 												<a class="nav-link" href="category.html">Shop Category</a>
 												<li class="nav-item">
 													<a class="nav-link" href="single-product.html">Product Details</a>
@@ -61,7 +64,7 @@
 														</li>
 														<li class="nav-item">
 															<a class="nav-link" href="confirmation.html">Confirmation</a>
-														</li>
+														</li> -->
 										</ul>
 									</li>
 									<!-- <li class="nav-item submenu dropdown">
@@ -76,20 +79,31 @@
 										</ul>
 									</li> -->
 									<li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-										<ul class="dropdown-menu">
-											<li class="nav-item">
-												<a class="nav-link" href="login.html">Login</a>
-												<li class="nav-item">
+										<!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a> -->
+										<a class="nav-link" >Stores</a>
+										<ul *ngIf="stores != null" class="dropdown-menu">
+											<li *ngFor="let store of stores; index as i" class="nav-item">
+												<a class="nav-link" >{{store.name}}</a>
+											</li>
+												<!-- <a class="nav-link" href="login.html">Login</a> -->
+												<!-- <li class="nav-item">
 													<a class="nav-link" href="tracking.html">Tracking</a>
 													<li class="nav-item">
 														<a class="nav-link" href="elements.html">Elements</a>
-													</li>
+													</li> -->
 										</ul>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="contact.html">Contact</a>
+									<li class="nav-item submenu dropdown">
+										<a class="nav-link" >Language</a>
+										<ul *ngIf="stores != null" class="dropdown-menu subList">
+												<li *ngFor="let storeView of stores[selectedStore].storeViews; index as j" class="nav-item">
+													<a [ngClass]="{'nav-link':true, 'selectedLink': global.selectedStoreId == storeView.storeId}">{{storeView.name}}</a>
+												</li>
+										</ul>
 									</li>
+									<!-- <li class="nav-item">
+										<a class="nav-link" href="contact.html">Contact</a>
+									</li> -->
 								</ul>
 							</div>
 
@@ -127,8 +141,16 @@
 											<i class="fa fa-shopping-cart"></i>
 										</a>
 									</li>
+									<!-- <hr>
+									<li>
+										<select *ngIf="stores != null" name="store" [ngModel]="selectedStore">
+											<option *ngFor="let store of stores; index as i" [ngValue]="i">{{store.name}}</option>
+										</select>
 
-									<hr>
+										<select *ngIf="stores != null" name="store" [ngModel]="selectedStoreId">
+											<option *ngFor="let storeId of stores[selectedStore].storeViews; index as i" [ngValue]="storeId.storeId">{{storeId.name}}</option>
+										</select>
+									</li> -->
 								</ul>
 							</div>
 						</div>

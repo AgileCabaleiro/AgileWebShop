@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Globals } from './globals';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -17,14 +19,17 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 const appRoutes: Routes = [
   { path: 'category/:categoryId', component: CategoryComponent},
+  { path: 'category/:categoryId/subcategory/:subCategoryId', component: CategoryComponent},
   { path: '', component: HomepageComponent},
   { path: 'home', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
+  { path: 'faq', component: FaqComponent},
   { path: 'product/:modelId', component: ProductViewComponent}
   // { path: '**', component: PageNotFoundComponent }
 ];
@@ -40,7 +45,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
@@ -48,11 +54,12 @@ const appRoutes: Routes = [
     HttpClientModule,
     Ng5SliderModule,
     FormsModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(appRoutes,
       { enableTracing: false } // <-- debugging purposes only)
     )
   ],
-  providers: [ApiService],
+  providers: [ApiService, Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

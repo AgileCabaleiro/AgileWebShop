@@ -34,4 +34,8 @@ export class ApiService{
 		console.log(url);
 		return this.http.get(url);
 	}
+	requestFAQ(storeId:number){
+		const url = 'https://private-anon-d53ae91229-gocco.apiary-mock.com/stores/' + storeId + '/faq';
+		return this.http.get(url);
+	}
 }

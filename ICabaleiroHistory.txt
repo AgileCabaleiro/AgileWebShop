@@ -50,4 +50,12 @@
 		- Check sizes && avalability
 01/05/19 19:30
 
+04/05/2019 10:30
+	- Implement global variables, organize && clean code
+	- Implement Stores & Categories on navbar
+	- Re-styling homepage.
+14:30
+19:00
+	- Re-styling
+04/05/2019 	21:00
 
