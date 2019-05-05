@@ -34,8 +34,30 @@ export class ApiService{
 		console.log(url);
 		return this.http.get(url);
 	}
+	/* Methods - HTML */
 	requestFAQ(storeId:number){
 		const url = 'https://private-anon-d53ae91229-gocco.apiary-mock.com/stores/' + storeId + '/faq';
+		console.log(url);
 		return this.http.get(url);
 	}
+	requestPrivacy(storeId:number){
+		const url = 'https://private-anon-d53ae91229-gocco.apiary-mock.com/stores/' + storeId + '/privacy';
+		console.log(url);
+		return this.http.get(url);
+	}
+	requestShoppingGuide(storeId:number){
+		const url = 'https://private-anon-d53ae91229-gocco.apiary-mock.com/stores/' + storeId + '/shopping_guide';
+		console.log(url);
+		return this.http.get(url);
+	}
+	requestShippingCosts(storeId:number){
+		const url = 'https://private-anon-d53ae91229-gocco.apiary-mock.com/stores/' + storeId + '/shipping_costs';
+		console.log(url);
+		return this.http.get(url);
+	}	
+	requestContacts(storeId:number){
+		const url = 'https://private-anon-d53ae91229-gocco.apiary-mock.com/stores/' + storeId + '/contacts';
+		console.log(url);
+		return this.http.get(url);
+	}	
 }

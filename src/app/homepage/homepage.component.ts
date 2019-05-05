@@ -10,10 +10,15 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit, AfterViewInit {
   /* Variables */
-  private storeId:number = 1;
+  // private storeId:number = 1;
   private products;
-  private images = ['assets/img/gallery/image1.jpeg', 'assets/img/gallery/image2.jpeg', 'assets/img/gallery/image3.jpeg', 'assets/img/gallery/image4.jpeg', 'assets/img/gallery/image5.jpeg']
-  private urlFilters = {
+  private carouselContent = [{image: 'assets/img/gallery/image1.jpeg', title: 'Special Offers',undertext: "That you won't see anywhere else" }, 
+  {image: 'assets/img/gallery/image2.jpeg',title: 'Summer Collection',undertext: 'Looking for something fresh'},
+  {image: 'assets/img/gallery/image5.jpeg',title: 'Winter is comming!',undertext: 'Get ready with our winter specials'},
+  {image: 'assets/img/gallery/image3.jpeg',title: 'Best Male Youth Fashion',undertext: 'For your little men'},
+  {image:'assets/img/gallery/image4.jpeg',title: 'Best Female Youth Fashion',undertext: 'For your little princess'}
+  ]
+  private urlFilters = { // We should set some filters to get featured products or flash offers
     categoryId: '',
     order: 'name',
     dir: 'asc',
@@ -22,27 +27,24 @@ export class HomepageComponent implements OnInit, AfterViewInit {
   };
   /* Constructor */
   constructor(public apiService:ApiService, public global:Globals) {
-    this.getProductsbyCategory();
+    
   }
-  /* Live */
+  /* Live cycle methods */
   ngOnInit() {
   	// this.getCountries();
-  	// this.getHomeCategories();
+    // this.getHomeCategories();
+    this.getProductsbyCategory();
   }
 
   ngAfterViewInit(){
 
   }
   public getCountries = async () => {
-  	this.apiService.requestAllCountries(this.storeId).subscribe((data: {}) => {
-  			console.log(data);
+  	this.apiService.requestAllCountries(this.global.selectedStoreId).subscribe((data: {}) => {
   	});
   }
-
   public getProductsbyCategory = async () => {
-  	this.apiService.requestProducts(this.storeId, this.urlFilters ).subscribe((data: {}) => {
-        console.log('Getting products for category: ' + this.urlFilters.categoryId)
-        console.log(data);
+  	this.apiService.requestProducts(this.global.selectedStoreId, this.urlFilters ).subscribe((data: {}) => {
         this.products = data['results'];
         this.products = this.products.slice(0, 5);
     });

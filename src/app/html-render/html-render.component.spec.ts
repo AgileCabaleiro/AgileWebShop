@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FaqComponent } from './faq.component';
+import { HtmlRenderComponent } from './html-render.component';
 
-describe('FaqComponent', () => {
-  let component: FaqComponent;
-  let fixture: ComponentFixture<FaqComponent>;
+describe('HtmlRenderComponent', () => {
+  let component: HtmlRenderComponent;
+  let fixture: ComponentFixture<HtmlRenderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FaqComponent ]
+      declarations: [ HtmlRenderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FaqComponent);
+    fixture = TestBed.createComponent(HtmlRenderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

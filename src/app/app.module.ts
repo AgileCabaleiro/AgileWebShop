@@ -19,7 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductViewComponent } from './product-view/product-view.component';
-import { FaqComponent } from './faq/faq.component';
+import { HtmlRenderComponent } from './html-render/html-render.component';
 
 
 const appRoutes: Routes = [
@@ -29,8 +29,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomepageComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'faq', component: FaqComponent},
-  { path: 'product/:modelId', component: ProductViewComponent}
+  { path: 'product/:modelId', component: ProductViewComponent},
+  { path: 'render/:view', component: HtmlRenderComponent},
   // { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     ProfileComponent,
     ProductViewComponent,
-    FaqComponent
+    HtmlRenderComponent
   ],
   imports: [
     BrowserModule,

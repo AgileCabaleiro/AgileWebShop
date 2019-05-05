@@ -59,3 +59,9 @@
 	- Re-styling
 04/05/2019 	21:00
 
+05/05/19 9:45
+	- Implement htmlRender Component for footer links (FAQ, contact... getting errors from API)
+	- 
+
+
+
