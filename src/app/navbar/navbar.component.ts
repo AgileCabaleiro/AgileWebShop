@@ -13,6 +13,10 @@ export class NavbarComponent implements OnInit {
   public stores = null;
   public subStores = null;
   public selectedStore : number = 2; //Default España
+  public navbarOpen = false;
+  public navbarCategoriesClosed = true;
+  public navbarStoresClosed = true;
+  public navbarLanguagesClosed = true;
   /* Constructor */
   constructor(public apiService:ApiService, public global:Globals, public router: Router) { }
   /* Lyfe cycle methods */
@@ -47,5 +51,19 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+
+  public toggleNavbar(){
+      this.navbarOpen = !this.navbarOpen;
+  }
+  public toggleCategories(){
+    this.navbarCategoriesClosed = !this.navbarCategoriesClosed;
+  }
+  public toggleStores(){
+    this.navbarStoresClosed = !this.navbarStoresClosed;
+  }
+  public toggleLanguages(){
+    this.navbarLanguagesClosed = !this.navbarLanguagesClosed;
+  }
+
 
 }
