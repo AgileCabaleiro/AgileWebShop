@@ -19,3 +19,9 @@ position: absolute;
 .CategoryActive{
 	font-weight: bold;
 }
+.linkHover:hover{
+	color: #246672 !important;
+}
+::ng-deep .ng5-slider-selection,::ng-deep .ng5-slider-pointer{
+	background: #246672 !important;
+}

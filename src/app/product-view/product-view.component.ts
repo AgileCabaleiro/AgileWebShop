@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 })
 export class ProductViewComponent implements OnInit {
   /* Variables */
-  private storeId = 1;
-  private modelId;
-  private productInfo = undefined;
-  private selectedSize;
-  private selectedSizeIndex = 0;
-  private selectedQuantity = 1;
-  private quantitiesArray;
+  public storeId = 1;
+  public modelId;
+  public productInfo = undefined;
+  public selectedSize;
+  public selectedSizeIndex = 0;
+  public selectedQuantity = 1;
+  public quantitiesArray;
   /* Constructor*/
   constructor(private route: ActivatedRoute, public apiService:ApiService, public router: Router) { 
     router.events.subscribe(data => {

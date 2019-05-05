@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./html-render.component.scss']
 })
 export class HtmlRenderComponent implements OnInit {
-  private selectedView;
-  private htmlCode: string = null;
+  public selectedView;
+  public htmlCode: string = null;
   constructor(public apiService:ApiService, public global:Globals, private route: ActivatedRoute, public router: Router) { 
     router.events.subscribe(data => {
       if(data instanceof ActivationEnd){

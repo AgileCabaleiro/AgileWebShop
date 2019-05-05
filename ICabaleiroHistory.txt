@@ -62,8 +62,15 @@
 05/05/19 9:45
 	- Implement htmlRender Component for footer links (FAQ, contact... getting errors from API)
 	- Improve homepage carousel functionality
+	- AFK 1 hour 30 min 
 	- Color Setup
-	- 
+	- Fixing little functonalities
+	- Re-styling
+05/05/19  14:00
+05/05/19  19:30
+	- Production compile
+	- Routing login & register template
+	- Cleaning a bit
 
 
 

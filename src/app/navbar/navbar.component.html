@@ -44,11 +44,11 @@
 						<div class="row w-100">
 							<div class="col-lg-7 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
-									<li class="nav-item active">
-										<a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+									<li class="nav-item">
+										<a [ngClass]="{'nav-link':true, 'selectedLink': global.componentSelector == 'home'}" routerLink="/home" routerLinkActive="active">Home</a>
 									</li>
 									<li class="nav-item submenu dropdown">
-										<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
+										<a [ngClass]="{'nav-link':true, 'dropdown-toggle':true, 'selectedLink': global.componentSelector == 'categories'}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories</a>
 										<ul class="dropdown-menu">
 											<li *ngFor="let cat of global.homeCategories" class="nav-item">
 												<a routerLink="/category/{{cat.categoryId}}" routerLinkActive="active" class="nav-link">{{cat.label}}</a>
@@ -83,7 +83,11 @@
 										<a class="nav-link" >Stores</a>
 										<ul *ngIf="stores != null" class="dropdown-menu">
 											<li *ngFor="let store of stores; index as i" class="nav-item">
-												<a class="nav-link" >{{store.name}}</a>
+												<a class="nav-link"  (click)="storeLinkClick(store.name)">
+													{{store.name}}
+													<i *ngIf="global.selectedStore == store.name" class="fa fa-check pull-right storeCheck" aria-hidden="true"></i>
+												</a>
+												
 											</li>
 												<!-- <a class="nav-link" href="login.html">Login</a> -->
 												<!-- <li class="nav-item">
@@ -96,8 +100,11 @@
 									<li class="nav-item submenu dropdown">
 										<a class="nav-link" >Language</a>
 										<ul *ngIf="stores != null" class="dropdown-menu subList">
-												<li *ngFor="let storeView of stores[selectedStore].storeViews; index as j" class="nav-item">
-													<a [ngClass]="{'nav-link':true, 'selectedLink': global.selectedStoreId == storeView.storeId}">{{storeView.name}}</a>
+												<li *ngFor="let storeView of subStores; index as j" class="nav-item">
+													<a class="nav-link">
+														{{storeView.name}}
+														<i *ngIf="global.selectedStoreId == storeView.storeId" class="fa fa-check pull-right storeCheck" aria-hidden="true"></i>
+													</a>
 												</li>
 										</ul>
 									</li>
@@ -120,7 +127,7 @@
 									<hr>
 
 									<li class="nav-item">
-										<a href="#" class="icons">
+										<a routerLink="/login" routerLinkActive="active" class="icons">
 											<!-- <i class="fa fa-user" aria-hidden="true"></i> -->
 											<fa [name]="'user'"></fa>
 										</a>

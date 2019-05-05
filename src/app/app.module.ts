@@ -17,7 +17,6 @@ import { CategoryComponent } from './category/category.component';
 import { Ng5SliderModule } from 'ng5-slider';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { HtmlRenderComponent } from './html-render/html-render.component';
 
@@ -44,7 +43,6 @@ const appRoutes: Routes = [
     CategoryComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent,
     ProductViewComponent,
     HtmlRenderComponent
   ],

@@ -12,20 +12,20 @@ import { Globals } from '../globals';
 })
 export class CategoryComponent implements OnInit {
   /* Variables*/
-  private storeId : number = 1;
-  private homeCategories = [];
-  private actualCategory = {};
-  private categoryId : string;
-  private subCategoryId: string;
-  private products;
-  private filters;
-  private sortBy;
-  private selectedSortByObj;
+  public storeId : number = 1;
+  public homeCategories = [];
+  public actualCategory = null;
+  public categoryId : string;
+  public subCategoryId: string;
+  public products;
+  public filters;
+  public sortBy;
+  public selectedSortByObj;
   // private selectedShowPerPage = 12;
-  private maxValue = 200;
-  private minValue = 0;
-  private bannerImage : string;
-  private urlFilters = {
+  public maxValue = 200;
+  public minValue = 0;
+  public bannerImage : string;
+  public urlFilters = {
     categoryId: '',
     order: 'name',
     dir: 'asc',
@@ -58,6 +58,7 @@ export class CategoryComponent implements OnInit {
   }
   /* Life cycle methods */
   ngOnInit() {
+    this.global.componentSelector = 'categories';
     this.getHomeCategories();
   }
   /* EVENTS */
@@ -81,7 +82,7 @@ export class CategoryComponent implements OnInit {
   	this.apiService.requestProducts(this.storeId, this.urlFilters ).subscribe((data: {}) => {
         console.log('Getting products for category: ' + this.urlFilters.categoryId)
         console.log(data);
-  			this.products = data['results'];
+  			this.products = data['results'].slice(0, this.urlFilters.limit); // Slice with visual purposes only, need fix on API
   			this.filters = data['filters'];
   			// this.minValue = this.filters[3].min;
   			this.maxValue = this.filters[3].max;

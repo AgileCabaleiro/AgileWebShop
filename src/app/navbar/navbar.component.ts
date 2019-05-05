@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Globals } from '../globals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,11 +10,11 @@ import { Globals } from '../globals';
 })
 export class NavbarComponent implements OnInit {
   /* Variables*/
-  private stores = null;
-  private subStores = null;
-  private selectedStore : number = 2; //Default España
+  public stores = null;
+  public subStores = null;
+  public selectedStore : number = 2; //Default España
   /* Constructor */
-  constructor(public apiService:ApiService, public global:Globals) { }
+  constructor(public apiService:ApiService, public global:Globals, public router: Router) { }
   /* Lyfe cycle methods */
   ngOnInit() {
     this.getStores();
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
   public getStores = async () => {
   	this.apiService.requestAllStores().subscribe((data: {}) => {
         this.stores = data;
+        this.subStores = data[this.selectedStore].storeViews;
   			console.log(this.stores);
   	});
   }
@@ -31,6 +33,19 @@ export class NavbarComponent implements OnInit {
   			this.global.homeCategories = data[Object.keys(data)[0]]; // avoid stupid object, convert into usefull array
   			console.log(this.global.homeCategories);
   	});
+  }
+  public storeLinkClick(event){
+    this.global.selectedStore = event;
+    this.stores.forEach(element => {
+      if(element.name == event){
+        this.global.selectedStoreId = element.storeViews[0].storeId;// We take first one as default
+        this.subStores = element.storeViews;
+        this.getHomeCategories();
+        this.router.navigate(['/home'], { // With this, we go back home or refresh home content
+          queryParams: {refresh: new Date().getTime()}
+       });
+      }
+    });
   }
 
 }

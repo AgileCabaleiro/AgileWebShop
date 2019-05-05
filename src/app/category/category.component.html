@@ -1,5 +1,5 @@
 	<!--================Home Banner Area =================-->
-	<section class="banner_area">
+	<section *ngIf="actualCategory != null" class="banner_area">
 		<div class="banner_inner d-flex align-items-center">
 			<img class="img-fluid img-categories banner_image" src="{{bannerImage}}" alt="">
 			<div class="container">
@@ -59,6 +59,11 @@
 							</nav>
 						</div>
 					</div>
+					<!--================ Loader =================-->
+					<div [hidden]="products != undefined" class="loaderDiv">
+						<i class="fa fa-spinner fa-spin"></i>
+					</div>
+					<!--================ End Loader =================-->
 					<!--================ Product Area =================-->
 					<div class="latest_product_inner row">
 						<div *ngFor="let item of products" class="col-lg-3 col-md-3 col-sm-6">
@@ -95,10 +100,10 @@
 							<div class="widgets_inner">
 								<ul class="list">
 									<li *ngFor="let cat of global.homeCategories">
-										<a routerLink="/category/{{cat.categoryId}}" routerLinkActive="active" [ngClass]="{'CategoryActive': cat.categoryId == categoryId}">{{cat.label}}</a>
+										<a routerLink="/category/{{cat.categoryId}}" routerLinkActive="active" [ngClass]="{'CategoryActive': cat.categoryId == categoryId, 'linkHover': true}">{{cat.label}}</a>
 										<ul [ngClass]="{'list':true, 'showList': categoryId == cat.categoryId}">
 											<li *ngFor="let subcat of cat.children">
-												<a routerLink="/category/{{cat.categoryId}}/subcategory/{{subcat.categoryId}}" routerLinkActive="active" [ngClass]="{'CategoryActive': subcat.categoryId == subCategoryId}">{{subcat.label}}</a>
+												<a routerLink="/category/{{cat.categoryId}}/subcategory/{{subcat.categoryId}}" routerLinkActive="active" [ngClass]="{'CategoryActive': subcat.categoryId == subCategoryId, 'linkHover': true}">{{subcat.label}}</a>
 											</li>
 										</ul>
 									</li>
