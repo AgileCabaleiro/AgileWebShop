@@ -71,6 +71,9 @@
 	- Production compile
 	- Routing login & register template
 	- Cleaning a bit
+	- Upload to propduction environment
+	- Write to the team
+05/05/19  22:45	
 
 
 
